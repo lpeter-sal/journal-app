@@ -9,3 +9,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <JournalApp />
   </React.StrictMode>,
 )
+
+
+/* Esto e sun <comentario></comentario> */
+/*Esta es otra prueba de comentario */
