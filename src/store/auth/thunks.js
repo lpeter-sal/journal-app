@@ -16,10 +16,10 @@ export const startGoogleSignIn = () => {
 
         dispatch( checkingCredentials() );
 
-        const result = await signInWithGoogle();
-        if( !result.ok ) return dispatch( logout( result.errorMessage ) );
+        const resp = await signInWithGoogle();
+        if( !resp.ok ) return dispatch( logout( resp.errorMessage ) );
         
-        dispatch( login( result ) );
+        dispatch( login( resp ) );
     }
 }
 
@@ -29,10 +29,10 @@ export const startCreatingUserWithEmailPassword = ({ email, password, displayNam
     return async( dispatch ) => {
         dispatch(checkingCredentials() );
 
-        const { ok, uid, photoURL, errorMessage } = await registerUserWithEmailPassword({ email, password, displayName });
-        if( !ok ) return dispatch( logout({ errorMessage }) );
+        const resp = await registerUserWithEmailPassword({ email, password, displayName });
+        if( !resp.ok ) return dispatch( logout( resp.errorMessage ) );
 
-        dispatch( login({ uid, displayName, email, photoURL }) );
+        dispatch( login( resp ) );
     }
 }
 
@@ -52,7 +52,7 @@ export const startLogout = () => {
 
         await logoutFirebase();
         dispatch( clearNotesLogout() );
-        dispatch( logout({ errorMessage: null}) );
+        dispatch( logout() );
     }
 }
 
